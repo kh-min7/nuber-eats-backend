@@ -7,13 +7,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
+const apollo_1 = require("@nestjs/apollo");
 const common_1 = require("@nestjs/common");
 const graphql_1 = require("@nestjs/graphql");
+const restaurants_module_1 = require("./restaurants/restaurants.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [graphql_1.GraphQLModule.forRoot()],
+        imports: [
+            graphql_1.GraphQLModule.forRoot({
+                driver: apollo_1.ApolloDriver,
+                autoSchemaFile: true,
+            }),
+            restaurants_module_1.RestaurantsModule,
+        ],
         controllers: [],
         providers: [],
     })
