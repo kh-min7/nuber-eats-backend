@@ -12,26 +12,32 @@ const common_1 = require("@nestjs/common");
 const graphql_1 = require("@nestjs/graphql");
 const restaurants_module_1 = require("./restaurants/restaurants.module");
 const typeorm_1 = require("@nestjs/typeorm");
+const config_1 = require("@nestjs/config");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            config_1.ConfigModule.forRoot({
+                isGlobal: true,
+                envFilePath: process.env.NODE_ENV === 'dev' ? '.env.dev' : '.env.test',
+                ignoreEnvFile: process.env.NODE_ENV === 'prod',
+            }),
+            typeorm_1.TypeOrmModule.forRoot({
+                type: 'postgres',
+                host: process.env.DB_HOST,
+                port: +process.env.DB_PORT,
+                username: process.env.DB_USERNAME,
+                password: process.env.DB_PASSWORD,
+                database: process.env.DB_NAME,
+                synchronize: true,
+                logging: true,
+            }),
             graphql_1.GraphQLModule.forRoot({
                 driver: apollo_1.ApolloDriver,
                 autoSchemaFile: true,
             }),
             restaurants_module_1.RestaurantsModule,
-            typeorm_1.TypeOrmModule.forRoot({
-                type: 'postgres',
-                host: 'localhost',
-                port: 5432,
-                password: '12345',
-                username: 'khmin7',
-                database: 'nuber-eats',
-                synchronize: true,
-                logging: true,
-            }),
         ],
         controllers: [],
         providers: [],
