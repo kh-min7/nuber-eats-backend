@@ -10,11 +10,12 @@ exports.AppModule = void 0;
 const apollo_1 = require("@nestjs/apollo");
 const common_1 = require("@nestjs/common");
 const graphql_1 = require("@nestjs/graphql");
-const restaurants_module_1 = require("./restaurants/restaurants.module");
 const typeorm_1 = require("@nestjs/typeorm");
 const config_1 = require("@nestjs/config");
 const Joi = require("joi");
-const restaurant_entity_1 = require("./restaurants/entities/restaurant.entity");
+const users_module_1 = require("./users/users.module");
+const common_module_1 = require("./common/common.module");
+const user_entity_1 = require("./users/entities/user.entity");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -42,13 +43,14 @@ AppModule = __decorate([
                 database: process.env.DB_NAME,
                 synchronize: process.env.NODE_ENV !== 'prod',
                 logging: process.env.NODE_ENV !== 'prod',
-                entities: [restaurant_entity_1.Restaurant],
+                entities: [user_entity_1.User],
             }),
             graphql_1.GraphQLModule.forRoot({
                 driver: apollo_1.ApolloDriver,
                 autoSchemaFile: true,
             }),
-            restaurants_module_1.RestaurantsModule,
+            users_module_1.UsersModule,
+            common_module_1.CommonModule,
         ],
         controllers: [],
         providers: [],
