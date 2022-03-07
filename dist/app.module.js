@@ -16,6 +16,7 @@ const Joi = require("joi");
 const users_module_1 = require("./users/users.module");
 const common_module_1 = require("./common/common.module");
 const user_entity_1 = require("./users/entities/user.entity");
+const jwt_module_1 = require("./jwt/jwt.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -52,6 +53,7 @@ AppModule = __decorate([
             }),
             users_module_1.UsersModule,
             common_module_1.CommonModule,
+            jwt_module_1.JwtModule,
         ],
         controllers: [],
         providers: [],
