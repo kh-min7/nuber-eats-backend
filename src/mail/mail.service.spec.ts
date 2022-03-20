@@ -47,7 +47,7 @@ describe('MailService', () => {
       expect(service.sendEmail).toHaveBeenCalledTimes(1);
       expect(service.sendEmail).toHaveBeenCalledWith(
         'Verify Your Email',
-        'verify-email',
+        'kh-min7',
         [
           { key: 'code', value: sendVerificationEmailArgs.code },
           { key: 'username', value: sendVerificationEmailArgs.email },
