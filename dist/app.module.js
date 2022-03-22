@@ -23,6 +23,7 @@ const verification_entity_1 = require("./users/entities/verification.entity");
 const mail_module_1 = require("./mail/mail.module");
 const restaurant_entity_1 = require("./restaurants/entities/restaurant.entity");
 const category_entity_1 = require("./restaurants/entities/category.entity");
+const restaurants_module_1 = require("./restaurants/restaurants.module");
 let AppModule = class AppModule {
     configure(consumer) {
         consumer
@@ -75,6 +76,7 @@ AppModule = __decorate([
                 fromEmail: process.env.MAILGUN_FROM_EMAIL,
             }),
             users_module_1.UsersModule,
+            restaurants_module_1.RestaurantsModule,
             common_module_1.CommonModule,
             auth_module_1.AuthModule,
         ],
