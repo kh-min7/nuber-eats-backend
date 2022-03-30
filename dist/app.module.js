@@ -26,6 +26,7 @@ const restaurants_module_1 = require("./restaurants/restaurants.module");
 const dish_entity_1 = require("./restaurants/entities/dish.entity");
 const orders_module_1 = require("./orders/orders.module");
 const order_entity_1 = require("./orders/entities/order.entity");
+const order_item_entity_1 = require("./orders/entities/order-item.entity");
 let AppModule = class AppModule {
     configure(consumer) {
         consumer
@@ -62,7 +63,15 @@ AppModule = __decorate([
                 database: process.env.DB_NAME,
                 synchronize: process.env.NODE_ENV !== 'prod',
                 logging: process.env.NODE_ENV !== 'prod' && process.env.NODE_ENV !== 'test',
-                entities: [user_entity_1.User, verification_entity_1.Verification, restaurant_entity_1.Restaurant, category_entity_1.Category, dish_entity_1.Dish, order_entity_1.Order],
+                entities: [
+                    user_entity_1.User,
+                    verification_entity_1.Verification,
+                    restaurant_entity_1.Restaurant,
+                    category_entity_1.Category,
+                    dish_entity_1.Dish,
+                    order_entity_1.Order,
+                    order_item_entity_1.OrderItem,
+                ],
             }),
             graphql_1.GraphQLModule.forRoot({
                 driver: apollo_1.ApolloDriver,
