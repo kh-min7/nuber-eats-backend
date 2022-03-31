@@ -74,9 +74,18 @@ AppModule = __decorate([
                 ],
             }),
             graphql_1.GraphQLModule.forRoot({
+                subscriptions: {
+                    'subscriptions-transport-ws': {
+                        onConnect: (connectionParams) => ({
+                            token: connectionParams['x-jwt'],
+                        }),
+                    },
+                },
                 driver: apollo_1.ApolloDriver,
                 autoSchemaFile: true,
-                context: ({ req }) => ({ user: req['user'] }),
+                context: ({ req }) => ({
+                    token: req.headers['x-jwt'],
+                }),
             }),
             jwt_module_1.JwtModule.forRoot({
                 privateKey: process.env.PRIVATE_KEY,
