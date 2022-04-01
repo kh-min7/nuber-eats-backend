@@ -16,7 +16,6 @@ const Joi = require("joi");
 const users_module_1 = require("./users/users.module");
 const user_entity_1 = require("./users/entities/user.entity");
 const jwt_module_1 = require("./jwt/jwt.module");
-const jwt_middleware_1 = require("./jwt/jwt.middleware");
 const auth_module_1 = require("./auth/auth.module");
 const verification_entity_1 = require("./users/entities/verification.entity");
 const mail_module_1 = require("./mail/mail.module");
@@ -28,11 +27,6 @@ const orders_module_1 = require("./orders/orders.module");
 const order_entity_1 = require("./orders/entities/order.entity");
 const order_item_entity_1 = require("./orders/entities/order-item.entity");
 let AppModule = class AppModule {
-    configure(consumer) {
-        consumer
-            .apply(jwt_middleware_1.JwtMiddleware)
-            .forRoutes({ path: '/graphql', method: common_1.RequestMethod.POST });
-    }
 };
 AppModule = __decorate([
     (0, common_1.Module)({
