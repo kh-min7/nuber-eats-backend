@@ -7,7 +7,7 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import * as AWS from 'aws-sdk';
 
-const BUCKET_NAME = 'khmim7nubereats0705';
+const BUCKET_NAME = 'khmin7nubereats1';
 
 @Controller('uploads')
 export class UploadsController {
@@ -15,6 +15,7 @@ export class UploadsController {
   @UseInterceptors(FileInterceptor('file'))
   async uploadFile(@UploadedFile() file) {
     AWS.config.update({
+      region: 'ap-northeast-2',
       credentials: {
         accessKeyId: process.env.AWS_ACCESS_KEY,
         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
@@ -30,7 +31,6 @@ export class UploadsController {
           ACL: 'public-read',
         })
         .promise();
-
       const url = `https://${BUCKET_NAME}.s3.amazonaws.com/${objectName}`;
       return { url };
     } catch (e) {
